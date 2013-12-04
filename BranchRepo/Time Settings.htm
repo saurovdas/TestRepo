@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Time Settings</title>
+
+<script>
+var element = null;
+function Over(menu){
+menu.style.background='url(/selectbg.jpg)';
+}
+function Out(menu){
+if (menu != element)
+{
+menu.style.background='url(#BFD1E1)';
+}
+}
+function Select(menu){
+if (element)
+{
+element.style.background='url(#BFD1E1)';
+}
+element = menu;
+menu.style.background='url(/selectbg.jpg)';
+}
+</script>
+<script type="text/javascript">
+							   function ChangeMode()
+							   {
+								   var mode = document.getElementById("TimeSettingsMode") ;
+									   var Value = mode.options[mode.value].value ;
+									   if (Value == 1)
+									   {
+										   	   document.getElementById("DeviceSetDate").disabled = true;
+											   document.getElementById("DeviceSetTime").disabled = true;
+											   document.getElementById("DeviceDSTAdjustment").disabled = false;
+											   document.getElementById("DeviceTimeZone").disabled = false;
+											   document.getElementById("NtpServerSelection").disabled = false;
+											   document.getElementById("NtpServerAddress").disabled = false;
+									   }
+									   else if (Value == 0)
+									   {
+										       document.getElementById("DeviceSetDate").disabled = false;
+											   document.getElementById("DeviceSetTime").disabled = false;
+											   document.getElementById("DeviceDSTAdjustment").disabled = true;
+											   document.getElementById("DeviceTimeZone").disabled = true;
+											   document.getElementById("NtpServerSelection").disabled = true;
+											   document.getElementById("NtpServerAddress").disabled = true;
+									   }
+							   }
+							   function ChangeNtpAddress()
+							   {
+								   var mode = document.getElementById("NtpServerSelection") ;
+									   var Value = mode.options[mode.value].value ;
+									   if (Value == 0)
+									   {
+											   document.getElementById("NtpServerAddress").disabled = false;
+									   }
+									   else if (Value == 1)
+									   {
+											   document.getElementById("NtpServerAddress").value = "";
+											   document.getElementById("NtpServerAddress").disabled = true;
+									   }
+							   }
+		function TimeSettingsFunc()
+		{
+				ChangeNtpAddress() ;				ChangeMode() ;
+				StartRefreshTimer() ;
+		}
+	</script>
+<script>function ConfigUpdate()
+{
+parent.configframe.location="admin.htm";
+}
+function FirmwareUpgrade()
+{
+parent.configframe.location="firmware_upgrade.htm";
+}
+function ChangePassword()
+{
+parent.configframe.location="change_password.htm";
+}
+function UploadConfig()
+{
+parent.configframe.location="upload_config.htm";
+}
+function RefreshTimeout()
+{
+parent.configframe.location="refresh_timeout.htm";
+}
+function TimeSettings()
+{
+parent.configframe.location="time_settings.htm";
+}
+</script>
+<style>
+.active{
+background-image:url(/selectbg.jpg);
+}
+.style1 {font-family: verdana,arial;
+font-size: 16px;
+color:#000000;
+font-weight: bold;
+text-align: center;
+}
+
+.style2 {font-family: verdana,arial;
+font-size: 14px;
+color:#000000;
+font-weight: bold;
+text-align: center;
+}
+.style3 {
+font-family: verdana,arial;
+color:#ffffff;
+text-align: center;
+text-decoration: none;
+}
+ul
+{list-style-type:none;
+padding-left:3px;
+margin:5px;
+}
+</style>
+
+<style type="text/css">.div1{
+position:fixed;
+z-index: 100;
+top:50%;
+left:50%;
+margin:-100px 0 0 -100px;
+width:200px;
+height:200px;
+}
+</style>
+<script type="text/javascript" src="Time%20Settings_files/RefreshPage.js"></script>
+<script type="text/javascript" src="Time%20Settings_files/VajraValidate.js"></script></head><body onload="TimeSettingsFunc();DisplayCurrentMenu(0, 0, 'TimeSettings', 'TimeSettings');" style="background: url(/mainbg.jpg); background-size: 100%;">
+<form action="/cgi-bin/VajraWebConfig.cgi" name="TimeSettings" onsubmit="return VajraValidate (this, 2)" method="post" autocomplete="off">
+<table height="100%" width="100%"><tbody><tr><td valign="top" width="15%">
+<div style="border:3px solid #DAE4EC;font:verdana,arial;overflow:auto;background-color:#BFD1E1; min-height:440px;max-height:440px;margin-left:6px;">
+<ul>
+<li style="font-weight: bold;"><span class="style1">Administration</span></li>
+<ul id="config">
+<li id="ConfigUpdate" style="margin-left:10px;margin-bottom:4px;" onclick="Select (this);" onmouseover="Over(this)" onmouseout="Out(this)"><a href="javascript:ConfigUpdate()" class="style3"><span class="style1" style="font-size:14px">Config Update</span></a></li>
+<li id="FirmwareUpgrade" style="margin-left:10px;margin-bottom:4px;" onclick="Select (this);" onmouseover="Over(this)" onmouseout="Out(this)"><a href="javascript:FirmwareUpgrade()" class="style3"><span class="style1" style="font-size:14px">Firmware Upgrade</span></a></li>
+<li id="ChangePassword" style="margin-left:10px;margin-bottom:4px;" onclick="Select (this);" onmouseover="Over(this)" onmouseout="Out(this)"><a href="javascript:ChangePassword()" class="style3"><span class="style1" style="font-size:14px">Change Password</span></a></li>
+<li id="UploadConfig" style="margin-left:10px;margin-bottom:4px;" onclick="Select (this);" onmouseover="Over(this)" onmouseout="Out(this)"><a href="javascript:UploadConfig()" class="style3"><span class="style1" style="font-size:14px">Upload Config</span></a></li>
+<li id="RefreshTimeout" style="margin-left:10px;margin-bottom:4px;" onclick="Select (this);" onmouseover="Over(this)" onmouseout="Out(this)"><a href="javascript:RefreshTimeout()" class="style3"><span class="style1" style="font-size:14px">Refresh Timeouts</span></a></li>
+<li id="TimeSettings" style="margin-left: 10px; margin-bottom: 4px; background: url(&quot;#BFD1E1&quot;) repeat scroll 0% 0% transparent;" onclick="Select (this);" onmouseover="Over(this)" onmouseout="Out(this)"><a href="javascript:TimeSettings()" class="style3"><span class="style1" style="font-size:14px">Time Settings</span></a></li>
+</ul></ul></div>
+</td><td>
+
+<div class="div1" id="loading" style="display:none;"><img src="Time%20Settings_files/loading.gif"><font size="4"><br>saving..<br></font></div>
+<div style="border:3px solid #DAE4EC;font:verdana,arial;background-color:#BFD1E1;min-height:440px;max-height:440px;margin-right:10px;">
+<table>
+<tbody><tr><td><font>&nbsp;</font></td><td><font size="4"><b>Time Settings</b></font></td></tr>
+</tbody></table>
+<div style="border:2px solid #DAE4EC;font:verdana,arial;background-color:#EEF5FB;margin:10px 10px 10px 10px;overflow-y: scroll;overflow-x: auto;min-height:340px;max-height:340px;">
+<table width="100%"><tbody><tr><td valign="top"><table></table><table cellpadding="6">
+<tbody><tr><td style="width:30%"><span title="This helps to select mode of setting time">Time Settings Mode:</span></td><td><select name="TimeSettingsMode " id="TimeSettingsMode" onchange="ChangeMode();"><option value="0">manual</option><option selected="selected" value="1">auto (NTP)</option></select></td></tr>
+<tr><td><span title="This field is used to set device date">Set Date:</span></td><td><input disabled="disabled" id="DeviceSetDate" placeholder="dd/mm/yyyy" name="DeviceSetDate " size="8" maxlength="10" type="text"></td></tr>
+<tr><td><span title="This field is used to set device time">Set Time:</span></td><td><input disabled="disabled" id="DeviceSetTime" placeholder="hh:mm" name="DeviceSetTime " size="8" maxlength="10" type="text"></td></tr>
+<tr><td><span title="This field is used to select local time zone">Time Zone:</span></td><td><select name="DeviceTimeZone " id="DeviceTimeZone">	<option value="-12">(GMT-12:00) International Date Line West</option>	<option value="-11">(GMT-11:00) Midway Island, Samoa</option>	<option value="-10">(GMT-10:00) Hawaii</option>	<option value="-9">(GMT-09:00) Alaska</option>	<option value="-8">(GMT-08:00) Pacific Time (US &amp; Canada)</option>	<option value="-8a">(GMT-08:00) Tijuana, Baja California</option>	<option value="-7">(GMT-07:00) Arizona</option>	<option value="-7a">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>	<option value="-7b">(GMT-07:00) Mountain Time (US &amp; Canada)</option>	<option value="-6">(GMT-06:00) Central America</option>	<option value="-6a">(GMT-06:00) Central Time (US &amp; Canada)</option>	<option value="-6b">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>	<option value="-6c">(GMT-06:00) Saskatchewan</option>	<option value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>	<option value="-5a">(GMT-05:00) Eastern Time (US &amp; Canada)</option>	<option value="-5b">(GMT-05:00) Indiana (East)</option>	<option value="-4">(GMT-04:00) Atlantic Time (Canada)</option>	<option value="-4a">(GMT-04:00) Caracas, La Paz</option>	<option value="-4b">(GMT-04:00) Manaus</option>	<option value="-4c">(GMT-04:00) Santiago</option>	<option value="-3.5">(GMT-03:30) Newfoundland</option>	<option value="-3">(GMT-03:00) Brasilia</option>	<option value="-3a">(GMT-03:00) Buenos Aires, Georgetown</option>	<option value="-3b">(GMT-03:00) Greenland</option>	<option value="-3c">(GMT-03:00) Montevideo</option>	<option value="-2">(GMT-02:00) Mid-Atlantic</option>	<option value="-1">(GMT-01:00) Cape Verde Is.</option>	<option value="-1a">(GMT-01:00) Azores</option>	<option value="0">(GMT+00:00) Casablanca, Monrovia, Reykjavik</option>	<option value="0a">(GMT+00:00) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</option>	<option value="1">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>	<option value="1a">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>	<option value="1b">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>	<option value="1c">(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</option>	<option value="1d">(GMT+01:00) West Central Africa</option>	<option value="2">(GMT+02:00) Amman</option>	<option value="2a">(GMT+02:00) Athens, Bucharest, Istanbul</option>	<option value="2b">(GMT+02:00) Beirut</option>	<option value="2c">(GMT+02:00) Cairo</option>	<option value="2d">(GMT+02:00) Harare, Pretoria</option>	<option value="2e">(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>	<option value="2f">(GMT+02:00) Jerusalem</option>	<option value="2g">(GMT+02:00) Minsk</option>	<option value="2h">(GMT+02:00) Windhoek</option>	<option value="3">(GMT+03:00) Kuwait, Riyadh, Baghdad</option>	<option value="3a">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>	<option value="3b">(GMT+03:00) Nairobi</option>	<option value="3c">(GMT+03:00) Tbilisi</option>	<option value="3.5">(GMT+03:30) Tehran</option>	<option value="4">(GMT+04:00) Abu Dhabi, Muscat</option>	<option value="4a">(GMT+04:00) Baku</option>	<option value="4b">(GMT+04:00) Yerevan</option>	<option value="4.5">(GMT+04:30) Kabul</option>	<option value="5">(GMT+05:00) Yekaterinburg</option>	<option value="5a">(GMT+05:00) Islamabad, Karachi, Tashkent</option>	<option value="5.5">(GMT+05:30) Sri Jayawardenapura</option>	<option selected="selected" value="5.5a">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>	<option value="5.75">(GMT+05:45) Kathmandu</option>	<option value="6">(GMT+06:00) Almaty, Novosibirsk</option>	<option value="6a">(GMT+06:00) Astana, Dhaka</option>	<option value="6.5">(GMT+06:30) Yangon (Rangoon)</option>	<option value="7">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>	<option value="7a">(GMT+07:00) Krasnoyarsk</option>	<option value="8">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>	<option value="8a">(GMT+08:00) Kuala Lumpur, Singapore</option>	<option value="8b">(GMT+08:00) Irkutsk, Ulaan Bataar</option>	<option value="8c">(GMT+08:00) Perth</option>	<option value="8d">(GMT+08:00) Taipei</option>	<option value="9">(GMT+09:00) Osaka, Sapporo, Tokyo</option>	<option value="9a">(GMT+09:00) Seoul</option>	<option value="9b">(GMT+09:00) Yakutsk</option>	<option value="9.5">(GMT+09:30) Adelaide</option>	<option value="9.5a">(GMT+09:30) Darwin</option>	<option value="10">(GMT+10:00) Brisbane</option>	<option value="10a">(GMT+10:00) Canberra, Melbourne, Sydney</option>	<option value="10b">(GMT+10:00) Hobart</option>	<option value="10c">(GMT+10:00) Guam, Port Moresby</option>	<option value="10d">(GMT+10:00) Vladivostok</option>	<option value="11">(GMT+11:00) Magadan, Solomon Is., New Caledonia</option>	<option value="12">(GMT+12:00) Auckland, Wellington</option>	<option value="12a">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>	<option value="13">(GMT+13:00) Nuku'alofa</option></select></td></tr>
+ <tr><td><span title="Disable/enable Daylight Saving (DST) adjustment">Daylight Saving Adjustment:</span></td><td><select id="DeviceDSTAdjustment" name="DeviceDSTAdjustment "><option selected="selected" value=" 0 ">disable</option><option value=" 1 ">enable</option></select></td></tr>
+ </tbody></table></td></tr><tr><td><table cellpadding="6"><tbody><tr><td style="width:36%"><span title="This field is used to set time server address">Time Server Address (NTP):</span></td><td><select name="NtpServerSelection " id="NtpServerSelection" onchange="ChangeNtpAddress();"><option value="0">manual</option><option selected="selected" value="1">default</option></select></td><td><span title=""></span></td><td><input id="NtpServerAddress" name="NtpServerAddress " size="30" maxlength="74" type="text"></td></tr>
+</tbody></table></td></tr></tbody></table>
+</div><table>
+<tbody><tr><td><font>&nbsp;</font></td><td><font><input id="submit" value="Save" type="submit"></font></td>
+</tr>
+</tbody></table></div>
+</td></tr></tbody></table><div style="text-align:right;color:white;"><p>Powered by Micrel&nbsp;&nbsp;</p></div>
+</form>
+
+</body></html>
