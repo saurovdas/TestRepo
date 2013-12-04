@@ -1,0 +1,29 @@
+<html> 
+<script language="Javascript"> 
+setInterval("settime()", 1000); 
+
+function settime () { 
+var curtime = new Date(); 
+var curhour = curtime.getHours(); 
+var curmin = curtime.getMinutes(); 
+var cursec = curtime.getSeconds(); 
+var time = ""; 
+
+if(curhour == 0) curhour = 12; 
+time = (curhour > 12 ? curhour - 12 : curhour) + ":" + 
+(curmin < 10 ? "0" : "") + curmin + ":" + 
+(cursec < 10 ? "0" : "") + cursec + " " + 
+(curhour > 12 ? "PM" : "AM"); 
+
+document.date.clock.value = time; 
+} 
+</script> 
+
+<body> 
+
+<form name="date"> 
+<input type="text" name="clock" style="border: 0px" value=""> 
+</form> 
+
+</body> 
+</html>

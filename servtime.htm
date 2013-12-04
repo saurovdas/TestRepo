@@ -1,0 +1,23 @@
+erver Time: <input type="text" id="clock" value="" size='8'>
+
+<script type="text/javascript">
+var serverTime = <?php echo time() * 1000; ?>; //this would come from the server
+var localTime = +Date.now();
+var timeDiff = serverTime - localTime;
+
+setInterval(function () {
+    var realtime = +Date.now() + timeDiff;
+    var date = new Date(realtime);
+    // hours part from the timestamp
+    var hours = date.getHours();
+    // minutes part from the timestamp
+    var minutes = date.getMinutes();
+    // seconds part from the timestamp
+    var seconds = date.getSeconds();
+
+    // will display time in 10:30:23 format
+    var formattedTime = hours + ':' + minutes + ':' + seconds;
+
+    $('#clock').attr('value',formattedTime); <-- input id=clock
+}, 1000);
+</script>

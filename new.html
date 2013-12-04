@@ -1,0 +1,111 @@
+<HEAD>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function move(frombox, tobox) {
+	var arrFrombox = new Array();
+	var arrTobox = new Array();
+	var arrLookup = new Array();
+	var i;
+
+	for (i = 0; i < tobox.options.length; i++) {
+		arrLookup[tobox.options[i].text] = tobox.options[i].value;
+		arrTobox[i] = tobox.options[i].text;
+		}
+	var fromLength = 0;
+	var toLength = arrTobox.length;
+
+	for(i = 0; i < frombox.options.length; i++) {
+		arrLookup[frombox.options[i].text] = frombox.options[i].value;
+		if (frombox.options[i].selected && frombox.options[i].value != "") {
+			arrTobox[toLength] = frombox.options[i].text;
+			toLength++;
+		}
+		else {
+		arrFrombox[fromLength] = frombox.options[i].text;
+		fromLength++;
+	   }
+	}
+	arrFrombox.sort();
+	arrTobox.sort();
+	frombox.length = 0;
+	tobox.length = 0;
+
+	var c;
+	
+	for(c = 0; c < arrFrombox.length; c++) {
+		var no = new Option();
+		no.value = arrLookup[arrFrombox[c]];
+		no.text = arrFrombox[c];
+		frombox[c] = no;
+	}
+
+	for(c = 0; c < arrTobox.length; c++) {
+		var no = new Option();
+		no.value = arrLookup[arrTobox[c]];
+		no.text = arrTobox[c];
+		tobox[c] = no;
+	   }
+	   alert (arrTobox);
+}
+
+
+
+<!-- SELECT ALL FUNCTION
+
+	function listbox_selectall(listID, isSelect) {
+		var listbox = document.getElementById(listID);
+		for(var count=0; count < listbox.options.length; count++) {
+			listbox.options[count].selected = isSelect;
+	}
+}
+
+
+-->
+
+</script>
+
+</HEAD>
+
+<!-- STEP TWO: Copy this code into the BODY of your HTML document  -->
+
+<BODY>
+
+<form name="combo_box1" action="multilist.asp" method="get" >
+
+<table><tr><td>
+<select id="parent" multiple size="10" name="parent" style="width:150">
+<option value="1">Alabama</option>
+<option value="2">Alaska</option>
+<option value="3">Arizona</option>
+<option value="4">Arkansas</option>
+<option value="5">California</option>
+<option value="6">Colorado</option>
+<option value="7">Connecticut</option>
+<option value="8">Delaware</option>
+<option value="9">District of Columbia</option>
+<option value="10">Florida</option>
+</select>
+</td>
+<td align="center" valign="middle">
+<input type="button" onClick="move(this.form.child,this.form.parent)" value="<<">
+<input type="button" onClick="move(this.form.parent,this.form.child)" value=">>">
+<input type="button" onClick="listbox_selectall('parent',true)" value="Select All">
+
+</td>
+<td>
+<select id="child" multiple size="10" name="child" >
+
+</select>
+</td></tr></table>
+<input type="submit" value="submit" >
+<p><center>
+
+<!-- Removed from Right: <INPUT TYPE="text" NAME="" VALUE="" SIZE=70><BR>
+Added to Right: <INPUT TYPE="text" NAME="addedRight" VALUE="" SIZE=70><BR>
+Left list contents: <INPUT TYPE="text" NAME="" VALUE="" SIZE=70><BR> -->
+Right list contents: <INPUT TYPE="text" NAME="arrTobox" VALUE="" SIZE=70><BR>
+
+</center><p>
+
+</form>
